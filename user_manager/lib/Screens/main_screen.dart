@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:user_manager/NetworkCalls/users_api.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
+  MainScreen({Key? key}) : super(key: key);
+  final test = UserApi();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
