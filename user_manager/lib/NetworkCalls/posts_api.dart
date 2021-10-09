@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:user_manager/Models/post_model.dart';
-import 'package:user_manager/Models/users_model.dart';
 
 class PostsApi {
   final _baseUrl = 'https://jsonplaceholder.typicode.com';

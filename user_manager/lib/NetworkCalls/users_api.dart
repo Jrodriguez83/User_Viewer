@@ -10,7 +10,6 @@ class UserApi {
     try {
       final _userRaw = await http.get(_userUrl);
       final _userJson = jsonDecode(_userRaw.body) as List;
-
       return _userJson
           .map(
             (user) => User(

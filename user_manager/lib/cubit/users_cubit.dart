@@ -9,6 +9,8 @@ class UsersCubit extends Cubit<UsersState> {
   UsersCubit() : super(UsersInitial());
   final userApi = UserApi();
   void getUsers() {
-    userApi.fetchUsers().then((users) => LoadedUsers(users: users));
+    userApi.fetchUsers().then((users) {
+      emit(LoadedUsers(users: users));
+    });
   }
 }

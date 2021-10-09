@@ -9,6 +9,8 @@ class PostsCubit extends Cubit<PostsState> {
   PostsCubit() : super(PostsInitial());
   final postApi = PostsApi();
   void getUsersPosts(int userId) {
-    postApi.fetchUserPost(userId).then((posts) => LoadedPosts(posts: posts));
+    postApi
+        .fetchUserPost(userId)
+        .then((posts) => emit(LoadedPosts(posts: posts)));
   }
 }
