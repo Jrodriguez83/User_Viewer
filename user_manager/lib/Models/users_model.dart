@@ -35,9 +35,3 @@ class Address extends UserData {
     required this.zipcode,
   });
 }
-
-// class Company extends UserData {
-//   String name;
-//   String catchPhrase;
-//   String bs;
-// }
