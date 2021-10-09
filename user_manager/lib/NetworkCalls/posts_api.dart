@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:user_manager/Models/post_model.dart';
 import 'package:user_manager/Models/users_model.dart';
 
-class UserApi {
+class PostsApi {
   final _baseUrl = 'https://jsonplaceholder.typicode.com';
   Future<List<Post>> fetchUserPost(int userId) async {
     final _userPostsUrl = Uri.parse(_baseUrl + '/posts?userId=$userId');
