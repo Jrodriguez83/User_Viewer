@@ -8,8 +8,8 @@ class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<UsersCubit>(context).getUsers();
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('MainScreen'),
       ),
@@ -19,6 +19,7 @@ class MainScreen extends StatelessWidget {
             child: BlocBuilder<UsersCubit, UsersState>(
               builder: (context, state) {
                 if (state is! LoadedUsers) {
+                  BlocProvider.of<UsersCubit>(context).getUsers();
                   return const Center(
                     child: CircularProgressIndicator(),
                   );

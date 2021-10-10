@@ -12,6 +12,10 @@ class UserManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.amber,
+        backgroundColor: Colors.grey[200],
+      ),
       onGenerateRoute: router.generateRoute,
     );
   }
