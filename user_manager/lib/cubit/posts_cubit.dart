@@ -12,6 +12,10 @@ class PostsCubit extends Cubit<PostsState> {
     final postApi = PostsApi();
     postApi
         .fetchUserPost(userId)
-        .then((posts) => emit(LoadedPosts(posts: posts)));
+        .then((posts) => emit(LoadedPosts(posts: posts)))
+        .catchError((_) {
+      emit(PostErrorHandler(
+          error: 'An error has occured! Please press to retry'));
+    });
   }
 }

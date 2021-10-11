@@ -5,6 +5,7 @@ import 'package:user_manager/Models/users_model.dart';
 
 class UserApi {
   final _baseUrl = 'https://jsonplaceholder.typicode.com';
+
   Future<List<User>> fetchUsers() async {
     final _userUrl = Uri.parse(_baseUrl + '/users');
     try {
@@ -29,7 +30,8 @@ class UserApi {
           )
           .toList();
     } catch (e) {
-      throw e;
+      print('ERROR: $e');
+      rethrow;
     }
   }
 }

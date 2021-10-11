@@ -21,14 +21,24 @@ class MainScreen extends StatelessWidget {
       ),
       body: BlocBuilder<UsersCubit, UsersState>(
         builder: (context, state) {
-          if (state is! LoadedUsers) {
+          if (state is! LoadedUsers && state is! UsersErrorHandler) {
             BlocProvider.of<UsersCubit>(context).getUsers();
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
+
+          if (state is UsersErrorHandler) {
+            final error = state.error;
+            return Center(
+                child: InkWell(
+                    onTap: () =>
+                        BlocProvider.of<UsersCubit>(context).getUsers(),
+                    child: Text(error)));
+          }
+          final users = (state as LoadedUsers).users;
           return UserList(
-            users: state.users,
+            users: users,
           );
         },
       ),

@@ -18,12 +18,22 @@ class DetailsScreen extends StatelessWidget {
       ),
       body: BlocBuilder<PostsCubit, PostsState>(
         builder: (context, state) {
-          if (state is! LoadedPosts) {
+          if (state is! LoadedPosts && state is! PostErrorHandler) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          final posts = state.posts;
+
+          if (state is PostErrorHandler) {
+            final error = state.error;
+            return Center(
+              child: InkWell(
+                  onTap: () => BlocProvider.of<PostsCubit>(context)
+                      .getUsersPosts(user.id),
+                  child: Text(error)),
+            );
+          }
+          final posts = (state as LoadedPosts).posts;
           return _buildUserDetails(posts: posts, user: user);
         },
       ),

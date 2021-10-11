@@ -10,3 +10,9 @@ class LoadedPosts extends PostsState {
 
   final List<Post> posts;
 }
+
+class PostErrorHandler extends PostsState {
+  final String error;
+
+  PostErrorHandler({this.error = ''});
+}

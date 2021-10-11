@@ -22,7 +22,7 @@ class PostsApi {
           )
           .toList();
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

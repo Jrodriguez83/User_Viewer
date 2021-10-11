@@ -12,6 +12,9 @@ class UsersCubit extends Cubit<UsersState> {
   void getUsers() {
     userApi.fetchUsers().then((users) {
       emit(LoadedUsers(users: users));
+    }).catchError((error) {
+      emit(UsersErrorHandler(
+          error: 'An error has occured! Please press to retry'));
     });
   }
 }
