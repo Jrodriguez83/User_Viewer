@@ -24,13 +24,13 @@ class UserApi {
                   city: user['address']['city'],
                   zipcode: user['address']['zipcode'],
                 ),
-                phoneNumber: user['phone'],
+                phoneNumber: (user['phone'] as String)
+                    .replaceAll(RegExp(r'[^0-9 x]'), ''),
                 website: user['website'],
                 companyName: user['company']['name']),
           )
           .toList();
     } catch (e) {
-      print('ERROR: $e');
       rethrow;
     }
   }

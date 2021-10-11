@@ -16,8 +16,10 @@ class UserList extends StatelessWidget {
         if (state is UpdateList) {
           return ListView(
             children: users
-                .where(
-                    (user) => user.username.toLowerCase().contains(state.value))
+                .where((user) =>
+                    user.name.toLowerCase().contains(state.value) ||
+                    user.companyName.toLowerCase().contains(state.value) ||
+                    user.email.toLowerCase().contains(state.value))
                 .map((user) => InkWell(
                       key: ObjectKey(user.id),
                       onTap: () => Navigator.of(context)
@@ -50,8 +52,14 @@ _buildUserWidget({required User user}) {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          UserInfoField(title: 'Username: ${user.username}'),
-          UserInfoField(title: 'Phone Number: ${user.phoneNumber}'),
+          UserInfoField(
+            leading: 'Name : ',
+            title: user.name,
+            weight: FontWeight.bold,
+            fontSize: 22,
+          ),
+          UserInfoField(leading: 'Company: ', title: user.companyName),
+          UserInfoField(leading: 'Email: ', title: user.email),
         ],
       ),
     ),
