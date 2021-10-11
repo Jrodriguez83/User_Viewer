@@ -1,20 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_manager/Models/users_model.dart';
+import 'package:user_manager/cubit/searchbox_cubit.dart';
+import 'package:user_manager/cubit/users_cubit.dart';
 
 class UserList extends StatelessWidget {
-  const UserList({Key? key, required this.users}) : super(key: key);
+  const UserList({Key? key, required this.users, this.controller = ''})
+      : super(key: key);
   final List<User> users;
+  final String controller;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: users
-          .map((user) => InkWell(
-                key: ObjectKey(user.id),
-                onTap: () => Navigator.of(context)
-                    .pushNamed('/details_screen', arguments: user),
-                child: _buildUserWidget(user: user),
-              ))
-          .toList(),
+    final usersC = BlocProvider.of<UsersCubit>(context);
+    return BlocBuilder<SearchboxCubit, SearchboxState>(
+      builder: (context, state) {
+        if (state is UpdateList) {
+          return ListView(
+            children: users
+                .where(
+                    (user) => user.username.toLowerCase().contains(state.value))
+                .map((user) => InkWell(
+                      key: ObjectKey(user.id),
+                      onTap: () => Navigator.of(context)
+                          .pushNamed('/details_screen', arguments: user),
+                      child: _buildUserWidget(user: user),
+                    ))
+                .toList(),
+          );
+        }
+
+        return ListView(
+          children: users
+              .map((user) => InkWell(
+                    key: ObjectKey(user.id),
+                    onTap: () => Navigator.of(context)
+                        .pushNamed('/details_screen', arguments: user),
+                    child: _buildUserWidget(user: user),
+                  ))
+              .toList(),
+        );
+      },
     );
   }
 }

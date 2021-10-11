@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_manager/Models/users_model.dart';
 import 'package:user_manager/Screens/details_screen.dart';
 import 'package:user_manager/Screens/main_screen.dart';
+import 'package:user_manager/cubit/appbar_cubit.dart';
 import 'package:user_manager/cubit/posts_cubit.dart';
+import 'package:user_manager/cubit/searchbox_cubit.dart';
 import 'package:user_manager/cubit/users_cubit.dart';
 
 class AppRouter {
@@ -21,8 +23,18 @@ class AppRouter {
 
 MaterialPageRoute _mainScreenBuilder() {
   return MaterialPageRoute(
-      builder: (_) => BlocProvider(
-            create: (_) => UsersCubit(),
+      builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => UsersCubit(),
+              ),
+              BlocProvider(
+                create: (context) => AppbarCubit(),
+              ),
+              BlocProvider(
+                create: (context) => SearchboxCubit(),
+              ),
+            ],
             child: const MainScreen(),
           ));
 }

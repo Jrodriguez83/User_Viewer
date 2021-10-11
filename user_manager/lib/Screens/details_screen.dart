@@ -129,7 +129,7 @@ Widget _buildPostCounter({required List<Post> posts}) {
     ),
     child: Column(
       children: [
-        MainInfoText(
+        const MainInfoText(
           title: 'Posts',
           fontSize: 35,
         ),

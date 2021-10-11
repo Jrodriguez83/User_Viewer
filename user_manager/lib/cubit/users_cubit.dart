@@ -8,9 +8,19 @@ part 'users_state.dart';
 class UsersCubit extends Cubit<UsersState> {
   UsersCubit() : super(UsersInitial());
   final userApi = UserApi();
+
   void getUsers() {
     userApi.fetchUsers().then((users) {
       emit(LoadedUsers(users: users));
     });
+  }
+
+  String _controller = '';
+  void getController(String str) {
+    _controller = str;
+  }
+
+  String get controller {
+    return _controller;
   }
 }
