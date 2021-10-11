@@ -14,13 +14,4 @@ class UsersCubit extends Cubit<UsersState> {
       emit(LoadedUsers(users: users));
     });
   }
-
-  String _controller = '';
-  void getController(String str) {
-    _controller = str;
-  }
-
-  String get controller {
-    return _controller;
-  }
 }

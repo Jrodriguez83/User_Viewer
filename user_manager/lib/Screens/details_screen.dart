@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_manager/Models/post_model.dart';
 import 'package:user_manager/Models/users_model.dart';
+import 'package:user_manager/Widgets/main_info_text.dart';
+import 'package:user_manager/Widgets/post_card.dart';
 import 'package:user_manager/cubit/posts_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -67,56 +69,6 @@ Widget _buildPostInfo({required List<Post> posts}) {
             ))
         .toList(),
   );
-}
-
-class PostCard extends StatelessWidget {
-  const PostCard({
-    Key? key,
-    required this.post,
-  }) : super(key: key);
-  final Post post;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      margin: const EdgeInsets.all(10),
-      alignment: Alignment.centerLeft,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              MainInfoText(title: 'Title: ${post.title}'),
-              MainInfoText(title: 'Description: ${post.body}'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class MainInfoText extends StatelessWidget {
-  const MainInfoText({
-    Key? key,
-    required this.title,
-    this.fontSize = 15,
-  }) : super(key: key);
-  final String title;
-  final double fontSize;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-      child: Text(
-        title,
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontSize: fontSize,
-        ),
-      ),
-    );
-  }
 }
 
 Widget _buildPostCounter({required List<Post> posts}) {

@@ -7,8 +7,9 @@ part 'posts_state.dart';
 
 class PostsCubit extends Cubit<PostsState> {
   PostsCubit() : super(PostsInitial());
-  final postApi = PostsApi();
+
   void getUsersPosts(int userId) {
+    final postApi = PostsApi();
     postApi
         .fetchUserPost(userId)
         .then((posts) => emit(LoadedPosts(posts: posts)));
