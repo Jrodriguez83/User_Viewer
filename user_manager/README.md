@@ -1,6 +1,6 @@
 # user_manager
 
-A new Flutter project.
+An app to manage user's info and see their published posts
 
 ## Getting Started
 
