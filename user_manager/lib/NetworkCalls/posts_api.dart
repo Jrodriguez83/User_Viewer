@@ -14,8 +14,8 @@ class PostsApi {
       return _postsJson
           .map(
             (post) => Post(
-              id: post['userId'],
-              userId: post['id'],
+              id: post['id'],
+              userId: post['userId'],
               title: post['title'],
               body: post['body'],
             ),

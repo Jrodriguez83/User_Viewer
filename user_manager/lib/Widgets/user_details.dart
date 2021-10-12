@@ -38,6 +38,7 @@ class UserDetails extends StatelessWidget {
         ),
         height: 55,
         child: TabBar(
+          unselectedLabelColor: Theme.of(context).colorScheme.primary,
           indicator: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
             borderRadius: const BorderRadius.all(Radius.circular(10)),

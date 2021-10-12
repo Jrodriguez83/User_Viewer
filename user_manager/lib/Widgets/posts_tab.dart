@@ -54,6 +54,7 @@ class PostTab extends StatelessWidget {
               child: Column(
                 children: posts
                     .map((post) => PostCard(
+                          key: ObjectKey(post.id),
                           post: post,
                         ))
                     .toList(),
