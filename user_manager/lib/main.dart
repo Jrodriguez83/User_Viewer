@@ -13,9 +13,12 @@ class UserManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepOrange),
-        backgroundColor: Colors.grey[200],
-      ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepOrange),
+          backgroundColor: Colors.grey[200],
+          tabBarTheme: const TabBarTheme(
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.deepOrange,
+          )),
       onGenerateRoute: router.generateRoute,
     );
   }

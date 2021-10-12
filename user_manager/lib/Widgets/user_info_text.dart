@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class UserInfoField extends StatelessWidget {
-  const UserInfoField(
+class UserInfoText extends StatelessWidget {
+  const UserInfoText(
       {Key? key,
       required this.title,
       required this.leading,
@@ -19,10 +19,6 @@ class UserInfoField extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Row(
         children: [
-          // Text(
-          //   leading,
-          //   style: TextStyle(fontSize: 22, fontWeight: weight),
-          // ),
           Expanded(
             child: Text(
               title,

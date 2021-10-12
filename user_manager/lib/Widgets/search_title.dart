@@ -13,6 +13,7 @@ class SearchTitle extends StatelessWidget {
     return BlocBuilder<AppbarCubit, AppbarState>(
       builder: (context, state) {
         if (state is AppbarSearchBox) {
+          //Show the TextField on the app bar
           return TextField(
             decoration: const InputDecoration(
               hintText: 'Search...',
@@ -21,7 +22,7 @@ class SearchTitle extends StatelessWidget {
                 BlocProvider.of<SearchboxCubit>(context).updateList(str: str),
           );
         }
-
+        //Shows the Page title on the app bar
         return const Text('Users List');
       },
     );

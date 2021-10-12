@@ -4,8 +4,8 @@ import 'package:user_manager/Models/post_model.dart';
 import 'package:user_manager/Widgets/post_card.dart';
 import 'package:user_manager/cubit/posts_cubit.dart';
 
-class PostSection extends StatelessWidget {
-  const PostSection({Key? key, required this.id}) : super(key: key);
+class PostTab extends StatelessWidget {
+  const PostTab({Key? key, required this.id}) : super(key: key);
   final int id;
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,7 @@ class PostSection extends StatelessWidget {
     return BlocBuilder<PostsCubit, PostsState>(
       builder: (context, state) {
         if (state is! LoadedPosts && state is! PostErrorHandler) {
+          //Displays a progress indicator only when there's not an error and the posts are still loading
           return const SingleChildScrollView(
             child: SizedBox(
               height: 300,
@@ -24,6 +25,7 @@ class PostSection extends StatelessWidget {
         }
 
         if (state is PostErrorHandler) {
+          //Displays an error message when an error is occured loading the data
           final error = state.error;
           return Center(
             child: InkWell(
@@ -33,35 +35,33 @@ class PostSection extends StatelessWidget {
           );
         }
         final posts = (state as LoadedPosts).posts;
-        return Column(
-          children: [
-            _buildPostCounter(posts: posts),
-            _buildPostInfo(posts: posts),
-          ],
-        );
+        //Shows the user's posts
+        return _buildPostList(context, posts);
       },
     );
   }
-}
 
-Widget _buildPostInfo({required List<Post> posts}) {
-  return Column(
-    children: posts
-        .map((post) => PostCard(
-              post: post,
-            ))
-        .toList(),
-  );
-}
-
-Widget _buildPostCounter({required List<Post> posts}) {
-  return Container(
-    margin: const EdgeInsets.all(15),
-    child: const Text(
-      'Posts: ',
-      style: TextStyle(
-        fontSize: 35,
-      ),
-    ),
-  );
+  Column _buildPostList(BuildContext context, List<Post> posts) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(border: Border.all(color: Colors.black45)),
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          height: MediaQuery.of(context).size.height * 0.6,
+          child: Scrollbar(
+            child: SingleChildScrollView(
+              child: Column(
+                children: posts
+                    .map((post) => PostCard(
+                          post: post,
+                        ))
+                    .toList(),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

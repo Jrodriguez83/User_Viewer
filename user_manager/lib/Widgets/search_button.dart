@@ -15,6 +15,8 @@ class SearchButton extends StatelessWidget {
     return BlocBuilder<AppbarCubit, AppbarState>(
       builder: (context, state) {
         if (state is AppbarSearchBox) {
+          //Displays the back button when the TextField is shown in order to
+          //close said text field
           return IconButton(
             onPressed: () {
               BlocProvider.of<SearchboxCubit>(context).updateList(str: '');
@@ -23,7 +25,7 @@ class SearchButton extends StatelessWidget {
             icon: const Icon(Icons.keyboard_backspace_rounded),
           );
         }
-
+        //Displays the search button in order to get the Text Field
         return IconButton(
           onPressed: () => onPressHandler(),
           icon: const Icon(Icons.search),

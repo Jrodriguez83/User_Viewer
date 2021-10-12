@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_manager/Models/users_model.dart';
-import 'package:user_manager/Widgets/user_info.dart';
+import 'package:user_manager/Widgets/user_info_text.dart';
 import 'package:user_manager/cubit/searchbox_cubit.dart';
 
 class UserList extends StatelessWidget {
@@ -14,6 +14,7 @@ class UserList extends StatelessWidget {
     return BlocBuilder<SearchboxCubit, SearchboxState>(
       builder: (context, state) {
         if (state is UpdateList) {
+          //Return the filtered list when applied
           return ListView(
             children: users
                 .where((user) =>
@@ -29,7 +30,7 @@ class UserList extends StatelessWidget {
                 .toList(),
           );
         }
-
+        // return the list without filters
         return ListView(
           children: users
               .map((user) => InkWell(
@@ -46,20 +47,21 @@ class UserList extends StatelessWidget {
 }
 
 _buildUserWidget({required User user}) {
+  //Widget to show the user's main contact info
   return Card(
     margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     child: Container(
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          UserInfoField(
+          UserInfoText(
             leading: 'Name : ',
             title: user.name,
             weight: FontWeight.bold,
             fontSize: 22,
           ),
-          UserInfoField(leading: 'Company: ', title: user.companyName),
-          UserInfoField(leading: 'Email: ', title: user.email),
+          UserInfoText(leading: 'Company: ', title: user.companyName),
+          UserInfoText(leading: 'Email: ', title: user.email),
         ],
       ),
     ),
